@@ -1,11 +1,11 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { JournalPage } from '../pages/JournalPage'
+import { ReservasPage } from '../pages/ReservasPage'
 
-export const JournalRoutes = () => {
+export const ReservasRoutes = () => {
     return (
         <Routes>
-            <Route path='/' element={<JournalPage />} />
+            <Route path='/' element={<ReservasPage />} />
             <Route path='/*' element={<Navigate to={'/'} />} />
         </Routes>
     )

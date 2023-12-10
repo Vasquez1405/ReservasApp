@@ -1,11 +1,14 @@
 import { TurnedInNot } from '@mui/icons-material'
 import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material'
+
+import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import React from 'react'
 import { useSelector } from 'react-redux'
 
 export const SideBar = ({ drawerWidth }) => {
 
-    const {displayName} = useSelector(state => state.auth)
+    const { displayName } = useSelector(state => state.auth)
+    const { reservas } = useSelector(state => state.reservas)
 
     return (
         <Box component='nav' sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} >
@@ -21,15 +24,17 @@ export const SideBar = ({ drawerWidth }) => {
 
                 <List>
                     {
-                        ['Enero', 'Febrero', 'Marzo', 'Abril'].map(text => (
-                            <ListItem key={text} disablePadding>
+                        reservas.map(reserva => (
+                            <ListItem key={reserva.id} disablePadding>
                                 <ListItemButton>
-                                    <ListItemIcon>
-                                        <TurnedInNot />
+                                    <ListItemIcon >
+                                        <AirplaneTicketIcon />
                                     </ListItemIcon>
-                                    <Grid container>
-                                        <ListItemText primary={text} />
-                                        <ListItemText secondary={'Lorem ipsum dolor sit amet consectetur adipisicing elit'} />
+                                    <Grid container direction='column'>
+                                        <ListItemText primary={reserva.codigoReserva} />
+                                        <ListItemText secondary={'$359.000'} />
+                                        <ListItemText secondary={'17-02-2024'} />
+                                        <ListItemText secondary={'08:30 am'} />
                                     </Grid>
                                 </ListItemButton>
                             </ListItem>

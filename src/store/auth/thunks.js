@@ -1,54 +1,68 @@
 import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from "../../firebase/providers"
+import { loadReservas } from "../../helpers/loadReservas"
+import { setReservas } from "../reservas/reservasSlice"
 import { checkingCredentials, login, logout } from "./authSlice"
 
 export const checkingAuthentication = (email, password) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(checkingCredentials())
     }
 }
 
 export const startGoogleSignIn = () => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(checkingCredentials());
 
         const result = await signInWithGoogle();
-        
-        if(!result.ok) dispatch(logout(result.errorMessage));
+
+        if (!result.ok) dispatch(logout(result.errorMessage));
 
         dispatch(login(result))
     }
 }
 
-export const startCreatingUserWithEmailPassword = ({email, password, displayName}) => {
-    return async(dispatch) => {
+export const startCreatingUserWithEmailPassword = ({ email, password, displayName }) => {
+    return async (dispatch) => {
 
         dispatch(checkingCredentials());
 
-        const {ok, uid, photoURL, errorMessage} = await registerUserWithEmailPassword({email, password, displayName});
+        const { ok, uid, photoURL, errorMessage } = await registerUserWithEmailPassword({ email, password, displayName });
 
-        if(!ok) return dispatch(logout({errorMessage}));
+        if (!ok) return dispatch(logout({ errorMessage }));
 
-        dispatch(login({uid, displayName, email, photoURL}))
+        dispatch(login({ uid, displayName, email, photoURL }))
     }
 }
 
-export const startLoginWithEmailPassword = ({email,password}) => {
-    return async(dispatch) => {
+export const startLoginWithEmailPassword = ({ email, password }) => {
+    return async (dispatch) => {
         dispatch(checkingCredentials());
 
-        const result = await loginWithEmailPassword({email, password});
-        
-        if(!result.ok) return dispatch(logout(result));
+        const result = await loginWithEmailPassword({ email, password });
+
+        if (!result.ok) return dispatch(logout(result));
 
         dispatch(login(result))
     }
 }
 
 export const startLogout = () => {
-    return async(dispatch) => {
+    return async (dispatch) => {
 
         await logoutFirebase();
 
         dispatch(logout({}))
+    }
+}
+
+export const startLoadingReservas = () => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth;
+
+        if (!uid) throw new Error('el UID del usuaruio no esta establecido')
+
+        const reservas = await loadReservas(uid)
+
+        dispatch(setReservas(reservas))
     }
 }
