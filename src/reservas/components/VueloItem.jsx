@@ -1,4 +1,4 @@
-import { Grid, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import { Box, Grid, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { setActiveVuelo } from '../../store/vuelos/vuelosSlice'
@@ -12,7 +12,8 @@ export const VueloItem = ({ vuelo }) => {
     }
 
     return (
-        <ListItem disablePadding sx={{ backgroundColor: 'white' }}>
+
+        <Box sx={{ backgroundColor: 'white', mt: 1, mr: 1 }}>
             <ListItemButton onClick={onClickVuelo}>
                 <Grid container direction='column'>
                     <ListItemText primary={`${vuelo.aeropuertoOrigen} - ${vuelo.aeropuertoDestino}`} />
@@ -21,6 +22,6 @@ export const VueloItem = ({ vuelo }) => {
                     <ListItemText secondary={`Precio: $${vuelo.precio}`} />
                 </Grid>
             </ListItemButton>
-        </ListItem>
+        </Box >
     )
 }

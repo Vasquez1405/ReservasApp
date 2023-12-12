@@ -1,6 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom'
-import { Google } from '@mui/icons-material'
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
+import { Alert, Button, Grid, Link, TextField } from '@mui/material'
 import { AuthLayout } from '../layout/AuthLayout'
 import { useForm } from '../../hooks/useForm'
 import { useMemo, useState } from 'react'

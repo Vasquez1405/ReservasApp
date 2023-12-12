@@ -17,6 +17,9 @@ export const reservasSlice = createSlice({
         setActiveReserva: (state, action) => {
             state.active = action.payload
         },
+        setOffReserva: (state) => {
+            state.active = null
+        },
         savingNewReserva: (state) => {
             state.isSaving = true;
         },
@@ -44,4 +47,4 @@ export const reservasSlice = createSlice({
     },
 })
 // Action creators are generated for each case reducer function
-export const { addNewReserva, setActiveReserva, savingNewReserva, setReservas, setSaving, updateReserva, deleteReservaById, clearReservasLogout } = reservasSlice.actions
+export const { setOffReserva, addNewReserva, setActiveReserva, savingNewReserva, setReservas, setSaving, updateReserva, deleteReservaById, clearReservasLogout } = reservasSlice.actions

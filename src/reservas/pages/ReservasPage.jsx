@@ -4,8 +4,6 @@ import { NothingSelectedView } from '../views/NothingSelectedView'
 import { ReservaView } from '../views/ReservaView'
 import { useSelector } from 'react-redux'
 
-const drawerWidth = 240;
-
 export const ReservasPage = () => {
 
     const { active } = useSelector(state => state.reservas);
@@ -16,7 +14,7 @@ export const ReservasPage = () => {
             {
                 (active !== null)
                     ? <ReservaView />
-                    : <NothingSelectedView destino='Medellin' />
+                    : <NothingSelectedView />
             }
 
 
