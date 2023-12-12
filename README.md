@@ -1,6 +1,6 @@
 # React + Vite
 
-## Requisitos
+## Herramientas Utilizadas
 ### - Yarn
 ### - Redux
 ### - Firestore
