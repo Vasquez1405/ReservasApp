@@ -1,4 +1,4 @@
-import { Link as RouterLink} from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import { Google } from '@mui/icons-material'
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
 import { AuthLayout } from '../layout/AuthLayout'
@@ -9,14 +9,14 @@ import { startCreatingUserWithEmailPassword } from '../../store/auth/thunks'
 
 const formData = {
     email: '',
-    password:'',
+    password: '',
     displayName: '',
 }
 
 const formValidations = {
-    email: [(value)=> value.includes('@'), "El correo debe tener un @"],
-    password: [(value)=> value.length >= 6, "la contraseña debe tener mas de 6 caracteres"],
-    displayName: [(value)=> value.length >= 1, "El nombre es obligatorio"],
+    email: [(value) => value.includes('@'), "El correo debe tener un @"],
+    password: [(value) => value.length >= 6, "la contraseña debe tener mas de 6 caracteres"],
+    displayName: [(value) => value.length >= 1, "El nombre es obligatorio"],
 }
 
 export const RegisterPage = () => {
@@ -25,19 +25,17 @@ export const RegisterPage = () => {
 
     const [formSubmitted, setFormSubmitted] = useState(false)
 
-    const {status, errorMessage} = useSelector(state => state.auth);
+    const { status, errorMessage } = useSelector(state => state.auth);
 
     const isCheckingAuthentication = useMemo(() => status === 'checking', [status])
 
-    const {formState, displayName, email, password, onInputChange, isFormValid, emailValid, passwordValid,displayNameValid} = useForm(formData, formValidations);
+    const { formState, displayName, email, password, onInputChange, isFormValid, emailValid, passwordValid, displayNameValid } = useForm(formData, formValidations);
 
-    console.log(displayNameValid)
-
-    const onSubmit = (event) =>{
+    const onSubmit = (event) => {
         event.preventDefault()
         setFormSubmitted(true)
 
-        if(!isFormValid) return;
+        if (!isFormValid) return;
 
         dispatch(startCreatingUserWithEmailPassword(formState))
     }

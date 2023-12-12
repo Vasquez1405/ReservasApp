@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../store/auth/authSlice";
 import { FirebaseAuth } from "../firebase/config";
-import { startLoadingReservas } from "../store/auth/thunks";
+import { startLoadingReservas } from "../store/reservas/thunks";
+import { startLoadingVuelos } from "../store/vuelos/thunks";
 
 
 export const useCheckAuth = () => {
@@ -20,6 +21,7 @@ export const useCheckAuth = () => {
 
             dispatch(login({ uid, email, displayName, photoURL }));
             dispatch(startLoadingReservas());
+            dispatch(startLoadingVuelos());
         })
 
     }, []);

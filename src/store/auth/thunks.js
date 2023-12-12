@@ -1,6 +1,5 @@
 import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, signInWithGoogle } from "../../firebase/providers"
-import { loadReservas } from "../../helpers/loadReservas"
-import { setReservas } from "../reservas/reservasSlice"
+import { clearReservasLogout } from "../reservas/reservasSlice"
 import { checkingCredentials, login, logout } from "./authSlice"
 
 export const checkingAuthentication = (email, password) => {
@@ -51,18 +50,8 @@ export const startLogout = () => {
 
         await logoutFirebase();
 
+        dispatch(clearReservasLogout())
+
         dispatch(logout({}))
-    }
-}
-
-export const startLoadingReservas = () => {
-    return async (dispatch, getState) => {
-        const { uid } = getState().auth;
-
-        if (!uid) throw new Error('el UID del usuaruio no esta establecido')
-
-        const reservas = await loadReservas(uid)
-
-        dispatch(setReservas(reservas))
     }
 }

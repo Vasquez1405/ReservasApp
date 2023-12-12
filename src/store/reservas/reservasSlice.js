@@ -1,21 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { loadReservas } from '../../helpers/loadReservas';
 
 export const reservasSlice = createSlice({
-    name: 'auth',
+    name: 'reservas',
     initialState: {
         isSaving: false,
         messageSaved: '',
         reservas: [],
         active: null,
-        // active: {
-        //     id: '123',
-        //     aeropuertoOrigen: '',
-        //     aeropuertoDestino: '',
-        //     fechaSalida: '',
-        //     fechaLlegada: '',
-        //     hora: '',
-        // }
     },
 
     reducers: {
@@ -38,8 +29,19 @@ export const reservasSlice = createSlice({
         },
         updateReserva: (state, action) => {
 
+        },
+        clearReservasLogout: (state) => {
+            state.isSaving = false;
+            state.messageSaved = '';
+            state.reservas = [];
+            state.active = null;
+
+        },
+        deleteReservaById: (state, action) => {
+            state.active = null;
+            state.reservas = state.reservas.filter(reserva => reserva.id !== action.payload)
         }
     },
 })
 // Action creators are generated for each case reducer function
-export const { addNewReserva, setActiveReserva, savingNewReserva, setReservas, setSaving, updateReserva } = reservasSlice.actions
+export const { addNewReserva, setActiveReserva, savingNewReserva, setReservas, setSaving, updateReserva, deleteReservaById, clearReservasLogout } = reservasSlice.actions

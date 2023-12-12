@@ -4,7 +4,7 @@ import { FirebaseDB } from "../firebase/config"
 export const loadReservas = async (uid = '') => {
     if (!uid) throw new Error('El UID del usuario no existe')
 
-    const collentionRef = collection(FirebaseDB, `${uid}/sistema/reservas`)
+    const collentionRef = collection(FirebaseDB, `${uid}`)
     const docs = await getDocs(collentionRef);
 
     const reservas = [];

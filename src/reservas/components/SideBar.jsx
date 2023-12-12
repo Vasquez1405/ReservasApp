@@ -1,9 +1,9 @@
-import { TurnedInNot } from '@mui/icons-material'
-import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material'
 
-import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
+import { Box, Divider, Drawer, List, Toolbar, Typography } from '@mui/material'
+
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { SideBarItem } from './SideBarItem'
 
 export const SideBar = ({ drawerWidth }) => {
 
@@ -25,19 +25,7 @@ export const SideBar = ({ drawerWidth }) => {
                 <List>
                     {
                         reservas.map(reserva => (
-                            <ListItem key={reserva.id} disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon >
-                                        <AirplaneTicketIcon />
-                                    </ListItemIcon>
-                                    <Grid container direction='column'>
-                                        <ListItemText primary={reserva.codigoReserva} />
-                                        <ListItemText secondary={'$359.000'} />
-                                        <ListItemText secondary={'17-02-2024'} />
-                                        <ListItemText secondary={'08:30 am'} />
-                                    </Grid>
-                                </ListItemButton>
-                            </ListItem>
+                            <SideBarItem key={reserva.id} reserva={reserva} />
                         ))
                     }
                 </List>
