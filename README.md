@@ -1,6 +1,6 @@
 # React + Vite
 
 ## Requisitos
-### yarn
-### Redux
-### Firestore
+### - Yarn
+### - Redux
+### - Firestore
