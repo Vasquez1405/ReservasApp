@@ -1,6 +1,9 @@
 # React + Vite
 
+
+
 ## Herramientas Utilizadas
+
 ### - Yarn
-### - Redux
+### - Redux Toolkit
 ### - Firestore
